@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private OrderFragment orderFragment;
     private ShopFragment shopFragment;
     private ContentFragment contentFragment;
-    private String tabTitles[]=new String[]{"主页","商城","订单","我的","主页1","商城1","订单1","我的1","主页2","商城2","订单2","我的2"};
-    private Handler handler=new Handler();
+    private String tabTitles[] = new String[]{"主页", "商城", "订单", "我的", "主页1", "商城1", "订单1", "我的1", "主页2", "商城2", "订单2", "我的2"};
+    private Handler handler = new Handler();
     private TextView textView;
     private TextView toOtherTextView;
 
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 //        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        Toast.makeText(MainActivity.this, "5+5" + 5 + 5, Toast.LENGTH_LONG).show();
-        textView=(TextView)findViewById(R.id.textView);
-        toOtherTextView=(TextView)findViewById(R.id.toOtherTextView);
+        textView = (TextView) findViewById(R.id.textView);
+        toOtherTextView = (TextView) findViewById(R.id.toOtherTextView);
         initView();
         newThreads();
         newHandler();
@@ -57,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 textView.setText("小泰科技");
 //                MenuActivity.actionStart(MainActivity.this,"王清","123");
-                startActivity(new Intent(MainActivity.this,MenuActivity.class));
+                startActivity(new Intent(MainActivity.this, MenuActivity.class));
             }
-        },1000);
+        }, 1000);
     }
 
-    public void toOtherActivity(){
-        startActivity(new Intent(MainActivity.this,WebViewActivity.class));
+    public void toOtherActivity() {
+        startActivity(new Intent(MainActivity.this, WebViewActivity.class));
     }
 
     private void newHandler() {
@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 textView.setText("王清");
             }
-        },2000);
+        }, 2000);
     }
 
     private void newThreads() {
-        new Thread(){
+        new Thread() {
             @Override
             public void run() {
                 super.run();
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             textView.setText("wangqing");
                         }
-                    },2000);
+                    }, 2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -111,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
 //        tabLayout.addTab(tabLayout.newTab().setText("订单2"));
 //        tabLayout.addTab(tabLayout.newTab().setText("我的2"));
         tabLayout.setupWithViewPager(viewPager);
-        if(tabTitles.length>5){
+        if (tabTitles.length > 5) {
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        }else {
+        } else {
             tabLayout.setTabMode(TabLayout.MODE_FIXED);
         }
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
