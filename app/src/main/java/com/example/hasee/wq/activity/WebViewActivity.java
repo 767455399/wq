@@ -1,5 +1,6 @@
 package com.example.hasee.wq.activity;
 
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hasee.wq.R;
 
@@ -49,7 +51,7 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
         webView = (WebView) findViewById(R.id.webView);
-        WebSettings webSettings=webView.getSettings();
+        WebSettings webSettings = webView.getSettings();
         //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
         webSettings.setJavaScriptEnabled(true);
         //设置自适应屏幕，两者合用
@@ -69,10 +71,26 @@ public class WebViewActivity extends AppCompatActivity {
         webSettings.setDefaultTextEncodingName("utf-8");
         //关于缓存的设置，没有网络的时候使用缓存，有网络的时候不适用缓存；
         webSettings.setCacheMode(webSettings.LOAD_CACHE_ELSE_NETWORK);
+        webView.loadUrl("http://10.200.4.68:82/#/index");
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl("http://baidu.com");
+                Uri uri=Uri.parse(url);
+                String path=uri.getPath();
+                String scheme=uri.getScheme();
+                String host=uri.getHost();
+                xtwq://paySDK_back_ecardList
+                if(scheme.equals("xtwq")){
+                    Toast.makeText(WebViewActivity.this,"获取jsbridge成功了",Toast.LENGTH_SHORT).show();
+                }
+                switch (host){
+                    case "paySDK_back_ecardList":
+                        Toast.makeText(WebViewActivity.this,"获取host成功",Toast.LENGTH_SHORT).show();
+                        break;
+                    case "xyk://login":
+                        Toast.makeText(WebViewActivity.this,"调取成功2",Toast.LENGTH_SHORT).show();
+                        break;
+                }
                 return true;
             }
 
@@ -83,7 +101,8 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 //        WebSettings webSettings=webView.getSettings();
-        webView.loadUrl("https://www.baidu.com/?tn=80035161_1_dg");
+//        webView.loadUrl("http://10.200.4.68:82/#/index");
+//        webView.loadUrl("https://www.baidu.com/?tn=80035161_1_dg");
 //        webView.loadUrl("https://pay.trc.com/pocketWallet_h5/#/loading");
 
     }

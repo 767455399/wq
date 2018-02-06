@@ -12,11 +12,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.wq.R;
-import com.example.hasee.wq.activity.menu.MenuActivity;
 import com.example.hasee.wq.fragment.ContentFragment;
 import com.example.hasee.wq.fragment.MineFragment;
 import com.example.hasee.wq.fragment.OrderFragment;
 import com.example.hasee.wq.fragment.ShopFragment;
+import com.example.hasee.wq.leakcanary.LeakCanaryActivity;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 textView.setText("小泰科技");
 //                MenuActivity.actionStart(MainActivity.this,"王清","123");
-                startActivity(new Intent(MainActivity.this, MenuActivity.class));
+                startActivity(new Intent(MainActivity.this, LeakCanaryActivity.class));
             }
         }, 1000);
     }
