@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.SslErrorHandler;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -70,21 +71,30 @@ public class WebViewActivity extends AppCompatActivity {
         //设置编码格式；
         webSettings.setDefaultTextEncodingName("utf-8");
         //关于缓存的设置，没有网络的时候使用缓存，有网络的时候不适用缓存；
-        webSettings.setCacheMode(webSettings.LOAD_CACHE_ELSE_NETWORK);
+        webSettings.setCacheMode(webSettings.LOAD_NO_CACHE);
         webView.loadUrl("http://10.200.4.68:82/#/index");
+
+        Toast.makeText(WebViewActivity.this,"Title"+webView.getTitle(),Toast.LENGTH_SHORT).show();
+        titleTextView.setText(webView.getTitle());
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                xtwq://paySDK_back_ecardList?age=1111
                 Uri uri=Uri.parse(url);
                 String path=uri.getPath();
                 String scheme=uri.getScheme();
                 String host=uri.getHost();
+                String queryString=uri.getQuery();
+                String queryParameter=uri.getQueryParameter("age");
+//                String param=uri.getQueryParameter("age");
+
                 xtwq://paySDK_back_ecardList
                 if(scheme.equals("xtwq")){
                     Toast.makeText(WebViewActivity.this,"获取jsbridge成功了",Toast.LENGTH_SHORT).show();
                 }
                 switch (host){
                     case "paySDK_back_ecardList":
+                        webView.loadUrl("javascript:xtwqCallBack('" + "fyd白霸天" + "')");
                         Toast.makeText(WebViewActivity.this,"获取host成功",Toast.LENGTH_SHORT).show();
                         break;
                     case "xyk://login":
@@ -99,7 +109,18 @@ public class WebViewActivity extends AppCompatActivity {
                 super.onReceivedSslError(view, handler, error);
                 handler.proceed();
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                webView.loadUrl("javascript:xtwqCallBack('" + "fyd白霸天" + "')");
+            }
         });
+        webView.setWebChromeClient(new WebChromeClient());
+        /**
+         * 加载本地html
+         */
+//        webView.loadUrl("file:///android_asset/xtwq.html");
 //        WebSettings webSettings=webView.getSettings();
 //        webView.loadUrl("http://10.200.4.68:82/#/index");
 //        webView.loadUrl("https://www.baidu.com/?tn=80035161_1_dg");

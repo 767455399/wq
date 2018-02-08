@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#76a6d5"
+    android:orientation="vertical"
+    tools:context="com.example.hasee.wq.activity.percent.PercentActivity">
+
+
+
+
+    <com.zhy.android.percent.support.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#ff7ecc16"
+            android:gravity="center"
+            android:text="margin 15% of w"
+            app:layout_marginPercent="10%w"
+            />
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="百分比布局"
+            android:gravity="center"
+            app:layout_textSizePercent="5%w"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"
+            android:background="#125651"
+            app:layout_heightPercent="30%w"
+            app:layout_widthPercent="50%"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_heightPercent="30%w"
+            app:layout_widthPercent="60%"
+            android:background="#da8686"/>
+
+        <com.example.hasee.wq.activity.percent.PercentLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#111111"
+            android:layout_gravity="bottom"
+            app:layout_heightPercent="50%w"
+            app:layout_widthPercent="100%"
+            >
+
+            <com.zhy.android.percent.support.PercentFrameLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="70%w"
+                app:layout_heightPercent="100%"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_marginPercent="10%w"
+                    android:background="#5b5454"
+                    android:text="按钮一"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    />
+
+            </com.zhy.android.percent.support.PercentFrameLayout>
+
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="30%w"
+                app:layout_heightPercent="100%"
+                android:background="#4ac785"
+                android:text="按钮二"
+                android:gravity="center"
+                android:textColor="#000000"
+                />
+
+
+
+        </com.example.hasee.wq.activity.percent.PercentLinearLayout>
+
+
+
+
+    </com.zhy.android.percent.support.PercentFrameLayout>
+
+
+
+</LinearLayout>
