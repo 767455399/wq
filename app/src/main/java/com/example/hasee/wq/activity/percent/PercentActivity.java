@@ -1,41 +1,47 @@
 package com.example.hasee.wq.activity.percent;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
+import android.widget.TextView;
 
 import com.example.hasee.wq.R;
 import com.example.hasee.wq.base.BaseActivity;
 
 public class PercentActivity extends BaseActivity {
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_percent);
-//        ActionBar actionBar=getSupportActionBar();
-//        if(actionBar!=null){
-//            actionBar.hide();
-//        }
-        if(Build.VERSION.SDK_INT>=21){
-            Window window=getWindow();
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        }
+      /* 隐藏actionbar方法
+        ActionBar actionBar=getSupportActionBar();
+        if(actionBar!=null){
+            actionBar.hide();
+        }*/
+
 
 
     }
 
     @Override
     protected void initView() {
-
+        setContentView(R.layout.activity_percent);
     }
 
     @Override
     public void initData() {
+        textView=(TextView)findViewById(R.id.textView);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isfastClick()){
+                    toast("请勿快速点击");
+                }else{
+                    toast("响应点击事件");
+                }
+            }
+        });
+
 
     }
     /**

@@ -7,18 +7,18 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.wq.R;
+import com.example.hasee.wq.activity.percent.PercentActivity;
+import com.example.hasee.wq.base.BaseActivity;
 import com.example.hasee.wq.fragment.ContentFragment;
 import com.example.hasee.wq.fragment.MineFragment;
 import com.example.hasee.wq.fragment.OrderFragment;
 import com.example.hasee.wq.fragment.ShopFragment;
-import com.example.hasee.wq.leakcanary.LeakCanaryActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private MineFragment mineFragment;
@@ -33,22 +33,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-//        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        Toast.makeText(MainActivity.this, "5+5" + 5 + 5, Toast.LENGTH_LONG).show();
-        textView = (TextView) findViewById(R.id.textView);
-        toOtherTextView = (TextView) findViewById(R.id.toOtherTextView);
-        initView();
-        newThreads();
-        newHandler();
-        delay();
-        toOtherTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toOtherActivity();
-            }
-        });
     }
 
     private void delay() {
@@ -57,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 textView.setText("小泰科技");
 //                MenuActivity.actionStart(MainActivity.this,"王清","123");
-                startActivity(new Intent(MainActivity.this, LeakCanaryActivity.class));
+                startActivity(new Intent(MainActivity.this, PercentActivity.class));
             }
         }, 1000);
     }
@@ -95,7 +79,20 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void initView() {
+    public void initView() {
+        setContentView(R.layout.activity_main);
+        textView = (TextView) findViewById(R.id.textView);
+        toOtherTextView = (TextView) findViewById(R.id.toOtherTextView);
+        newThreads();
+        newHandler();
+        delay();
+        toast("wqwqwq");
+        toOtherTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toOtherActivity();
+            }
+        });
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 //        tabLayout.addTab(tabLayout.newTab().setText("主页"));
@@ -179,6 +176,11 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+    }
+
+    @Override
+    public void initData() {
 
     }
 
