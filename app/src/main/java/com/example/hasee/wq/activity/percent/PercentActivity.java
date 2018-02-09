@@ -34,7 +34,7 @@ public class PercentActivity extends BaseActivity {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isfastClick()){
+                if(isRepeatedClicks()){
                     toast("请勿快速点击");
                 }else{
                     toast("响应点击事件");

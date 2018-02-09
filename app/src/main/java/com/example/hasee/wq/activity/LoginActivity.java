@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import com.example.hasee.wq.R;
 import com.example.hasee.wq.activity.startup_mode.SingleTopActivity;
 import com.example.hasee.wq.api.AccountApi;
+import com.example.hasee.wq.base.BaseActivity;
 import com.example.hasee.wq.modle.AccountModle;
 import com.example.hasee.wq.modle.LoginModle;
 import com.example.hasee.wq.modle.SportsRuleModel;
@@ -36,7 +36,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by wangqing on 2017/11/4.
  */
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     public static final String BASE_URL = "https://passport.trc.com/account/";
     public static final String TRPAY_BASE_URL = "https://pay.trc.com/";
     public static final String SPORT_BASE_URL = "https://appapi.trc.com/";
@@ -55,14 +55,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        init();
     }
 
-    /**
-     * 初始化数据
-     */
-    public void init() {
+    @Override
+    protected void initView() {
+        setContentView(R.layout.activity_login);
         sp = getSharedPreferences("data", 0);
         accountEditText = (EditText) findViewById(R.id.accountEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
@@ -80,10 +77,16 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString("name", account);
                 editor.putString("psw", password);
                 editor.commit();
+                hideSoftInput();
                 login(account, password);
 
             }
         });
+    }
+
+    @Override
+    public void initData() {
+
     }
 
 
@@ -320,8 +323,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onNext(SportsRuleModel sportsRuleModel) {
-                Toast.makeText(LoginActivity.this,"登陆成功",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this,SingleTopActivity.class));
+                Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, SingleTopActivity.class));
             }
 
             @Override
@@ -339,7 +342,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     @Subscribe(code = 001)
-    public void refresh(String msg){
+    public void refresh(String msg) {
         sureButton.setText(msg);
 //        Toast.makeText(LoginActivity.this,msg,Toast.LENGTH_LONG).show();
     }

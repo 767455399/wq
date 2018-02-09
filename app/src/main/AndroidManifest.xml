@@ -59,7 +59,8 @@
         <activity android:name=".activity.menu.MenuActivity" />
         <activity android:name=".leakcanary.LeakCanaryActivity" />
         <activity android:name=".activity.percent.PercentActivity" />
-        <activity android:name=".base.BaseActivity"></activity>
+        <activity android:name=".base.BaseActivity"/>
+        <activity android:name=".activity.FunctionMenuActivity"></activity>
     </application>
 
 </manifest>

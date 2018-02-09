@@ -1,5 +1,6 @@
 package com.example.hasee.wq.base;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.hasee.wq.tools.FastClick;
 import com.example.hasee.wq.tools.ToastUtil;
@@ -44,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 防止按钮被快速点击
      */
-    public boolean isfastClick() {
+    public boolean isRepeatedClicks() {
         return FastClick.isFastClick();
     }
 
@@ -62,9 +64,44 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 强制竖屏
      */
-    public void forcedVerticalScreen(){
+    public void forcedVerticalScreen() {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
+    /**
+     * 检测网络环境
+     */
+    public boolean isAvailableNetworks() {
+        return false;
+    }
 
+    /**
+     * 界面跳转
+     */
+    public void startActivity(Class<?> clz) {
+        startActivity(new Intent(BaseActivity.this, clz));
+    }
+
+    /**
+     * 绑定view
+     */
+    protected <T extends View> T f(int id) {
+        return (T) findViewById(id);
+    }
+
+    /**
+     * 隐藏软键盘
+     */
+    public void hideSoftInput() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (getCurrentFocus() != null) {
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        hideSoftInput();
+    }
 }

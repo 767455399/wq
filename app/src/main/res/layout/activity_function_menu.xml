@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hasee.wq.activity.FunctionMenuActivity">
+
+
+    <TextView
+        android:id="@+id/handlerTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button_blue_bg"
+        android:gravity="center"
+        android:text="线程"
+        android:textSize="40dp"
+        app:layout_heightPercent="20%w"
+        app:layout_widthPercent="50%" />
+
+    <TextView
+        android:id="@+id/canvasTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_blue_bg"
+        android:text="画画"
+        android:textSize="40dp"
+        android:gravity="center"
+        app:layout_heightPercent="20%w"
+        app:layout_widthPercent="50%" />
+
+    <TextView
+        android:id="@+id/permissionTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button_black_border"
+        android:layout_below="@+id/handlerTextView"
+        android:gravity="center"
+        android:text="权限"
+        android:textSize="40dp"
+        app:layout_heightPercent="20%w"
+        app:layout_widthPercent="50%" />
+
+    <TextView
+        android:id="@+id/webViewTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/canvasTextView"
+        android:background="@drawable/button_black_border"
+        android:text="网页"
+        android:textSize="40dp"
+        android:gravity="center"
+        app:layout_heightPercent="20%w"
+        app:layout_widthPercent="50%" />
+
+    <TextView
+        android:id="@+id/callPhoneTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/button_black_border"
+        android:layout_below="@+id/permissionTextView"
+        android:gravity="center"
+        android:text="打电话"
+        android:textSize="40dp"
+        app:layout_heightPercent="20%w"
+        app:layout_widthPercent="50%" />
+
+    <TextView
+        android:id="@+id/menuTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/webViewTextView"
+        android:background="@drawable/button_black_border"
+        android:text="menu"
+        android:textSize="40dp"
+        android:gravity="center"
+        app:layout_heightPercent="20%w"
+        app:layout_widthPercent="50%" />
+
+
+
+    <TextView
+        android:id="@+id/percentTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/callPhoneTextView"
+        android:background="@drawable/button_black_border"
+        android:text="百分比布局"
+        android:textSize="30dp"
+        android:gravity="center"
+        app:layout_heightPercent="20%w"
+        app:layout_widthPercent="50%" />
+
+
+</com.zhy.android.percent.support.PercentRelativeLayout>
