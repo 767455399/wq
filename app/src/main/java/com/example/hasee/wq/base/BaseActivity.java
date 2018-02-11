@@ -1,10 +1,13 @@
 package com.example.hasee.wq.base;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -15,6 +18,16 @@ import com.example.hasee.wq.tools.ToastUtil;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    @SuppressLint("HandlerLeak")
+    public Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            toast((String) msg.obj);
+           handler.postDelayed(runnable,10000);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +35,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
         steepStatusBar();
         forcedVerticalScreen();
+        /**
+         * 开启定时执行任务；
+         */
+//        new Thread(runnable).start();
     }
+
+    Runnable runnable=new Runnable() {
+        @Override
+        public void run() {
+            Message message=new Message();
+            message.obj="定时任务";
+            handler.sendMessage(message);
+        }
+    };
 
     @Override
     public void setContentView(int layoutResID) {
