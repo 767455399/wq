@@ -22,13 +22,14 @@ android {
 dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+//    compile project(':module:zxing')
     //Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     //Gson converter
@@ -39,11 +40,11 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.0.8'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //app方法数超过一定数目时使用，可以分包打包方法。
-    compile "com.android.support:multidex:1.0.2"
+    compile 'com.android.support:multidex:1.0.2'
     compile 'lib.gorden.rxbus2:rxbus:2.0.1'
-
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.zhy:percent-support-extends:1.0.1'
+//    implementation project(':module:zxing')
 }

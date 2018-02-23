@@ -1,6 +1,5 @@
 package com.example.hasee.wq.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
@@ -11,14 +10,21 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.wq.R;
-import com.example.hasee.wq.activity.fragment.FragmentActivity;
 import com.example.hasee.wq.base.BaseActivity;
 import com.example.hasee.wq.fragment.ContentFragment;
 import com.example.hasee.wq.fragment.MineFragment;
 import com.example.hasee.wq.fragment.OrderFragment;
 import com.example.hasee.wq.fragment.ShopFragment;
+import com.example.hasee.wq.tools.NailRobot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
+    private String path="https://oapi.dingtalk.com/robot/send?access_token=455c76d858fd025a3f94464f9fc6743b918d81c44fd8e3d70cc4adc75d6ddc35";
+//    private String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"我就是我, 是不一样的烟火wq\"}}";
+    private String textMsg = "大小么";
+    private List<String> phoneList=new ArrayList<>();
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private MineFragment mineFragment;
@@ -40,15 +46,18 @@ public class MainActivity extends BaseActivity {
             @Override
             public void run() {
                 textView.setText("小泰科技");
+
 //                MenuActivity.actionStart(MainActivity.this,"王清","123");
-                startActivity(new Intent(MainActivity.this, FragmentActivity.class));
+//                startActivity(new Intent(MainActivity.this, HandlerActivity.class));
 //                FragmentHostActivity.openFragment(MainActivity.this,MineFragment.newInstance());
             }
         }, 1000);
     }
 
     public void toOtherActivity() {
-        startActivity(new Intent(MainActivity.this, WebViewActivity.class));
+        phoneList.add("18667906808");
+        NailRobot.sengMsg(path,textMsg,phoneList);
+//        startActivity(new Intent(MainActivity.this, WebViewActivity.class));
     }
 
     private void newHandler() {

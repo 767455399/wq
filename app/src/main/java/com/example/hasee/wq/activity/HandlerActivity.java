@@ -12,14 +12,26 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hasee.wq.R;
+import com.example.hasee.wq.tools.ToastUtil;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class HandlerActivity extends AppCompatActivity {
+    private String path="https://oapi.dingtalk.com/robot/send?access_token=455c76d858fd025a3f94464f9fc6743b918d81c44fd8e3d70cc4adc75d6ddc35";
+    private String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"aaa我就是我, 是不一样的烟火\"}}";
     public static final int PERMISSION_CALL_PHONE=0;
     private TextView textView;
     private int i = 0;
@@ -29,7 +41,7 @@ public class HandlerActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             textView.setText(String.valueOf(msg.arg1));
-            requestPermission();
+//            requestPermission();
             handler.postDelayed(runnable, 1000);
 
         }
@@ -73,6 +85,7 @@ public class HandlerActivity extends AppCompatActivity {
         @Override
         public void run() {
             try {
+                request(path,textMsg);
                 Thread.sleep(1000);
                 i++;
                 Message message = new Message();
@@ -107,6 +120,60 @@ public class HandlerActivity extends AppCompatActivity {
 //            return;
 //        }
 
+    }
+
+
+    public static String request(String urlPath, String Json) {
+        // HttpClient 6.0被抛弃了
+        String result = "";
+        BufferedReader reader = null;
+        try {
+            URL url = new URL(urlPath);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setUseCaches(false);
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("Charset", "UTF-8");
+            // 设置文件类型:
+            conn.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+            // 设置接收类型否则返回415错误
+            //conn.setRequestProperty("accept","*/*")此处为暴力方法设置接受所有类型，以此来防范返回415;
+            conn.setRequestProperty("accept","application/json");
+            // 往服务器里面发送数据
+            if (Json != null && !TextUtils.isEmpty(Json)) {
+                byte[] writebytes = Json.getBytes();
+                // 设置文件长度
+                conn.setRequestProperty("Content-Length", String.valueOf(writebytes.length));
+                OutputStream outwritestream = conn.getOutputStream();
+                outwritestream.write(Json.getBytes());
+                outwritestream.flush();
+                outwritestream.close();
+                Log.d("hlhupload", "doJsonPost: conn"+conn.getResponseCode());
+            }
+            if (conn.getResponseCode() == 200) {
+                reader = new BufferedReader(
+                        new InputStreamReader(conn.getInputStream()));
+                result = reader.readLine();
+                ToastUtil.showNormalToast("1111");
+            }else{
+                ToastUtil.showNormalToast("2222");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            ToastUtil.showNormalToast("3333");
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            ToastUtil.showNormalToast("4444");
+        }
+        return result;
     }
 
     private void requestPermission() {
