@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".base.BaseApplication"
@@ -16,6 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <receiver
+            android:name=".BroadCastReceivers"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.wq.broadcasttest.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +58,7 @@
             android:name=".activity.startup_mode.SingleTaskActivity"
             android:launchMode="singleTask" />
         <activity android:name=".activity.startup_mode.OtherActivity" />
-        <activity android:name=".activity.FragmentActivity" />
+        <activity android:name=".activity.fragment.FragmentActivity" />
         <activity android:name=".activity.TablayoutActivity" />
         <activity android:name=".activity.HandlerActivity" />
         <activity android:name=".activity.WebViewActivity" />
@@ -59,8 +69,11 @@
         <activity android:name=".activity.menu.MenuActivity" />
         <activity android:name=".leakcanary.LeakCanaryActivity" />
         <activity android:name=".activity.percent.PercentActivity" />
-        <activity android:name=".base.BaseActivity"/>
-        <activity android:name=".activity.FunctionMenuActivity"></activity>
+        <activity android:name=".base.BaseActivity" />
+        <activity android:name=".activity.FunctionMenuActivity" />
+        <activity android:name=".activity.broadcast_receiver.BroadcastReceiverActivity" />
+        <activity android:name=".activity.broadcast_receiver.SendBroadcastActivity" />
+        <activity android:name=".activity.fragment.FragmentHostActivity"></activity>
     </application>
 
 </manifest>

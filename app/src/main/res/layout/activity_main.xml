@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:gravity="center"
+        android:background="#db836d"
         android:textColor="#123456"
         android:text="123"/>
 

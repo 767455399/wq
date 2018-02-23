@@ -1,13 +1,17 @@
 package com.example.hasee.wq.base;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -17,14 +21,15 @@ import com.example.hasee.wq.tools.FastClick;
 import com.example.hasee.wq.tools.ToastUtil;
 
 public abstract class BaseActivity extends AppCompatActivity {
+    private boolean availableNetworks;
 
     @SuppressLint("HandlerLeak")
-    public Handler handler=new Handler(){
+    public Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             toast((String) msg.obj);
-           handler.postDelayed(runnable,10000);
+            handler.postDelayed(runnable, 10000);
         }
     };
 
@@ -41,11 +46,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        new Thread(runnable).start();
     }
 
-    Runnable runnable=new Runnable() {
+    Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            Message message=new Message();
-            message.obj="定时任务";
+            Message message = new Message();
+            message.obj = "定时任务";
             handler.sendMessage(message);
         }
     };
@@ -98,7 +103,14 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 检测网络环境
      */
     public boolean isAvailableNetworks() {
-        return false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isAvailable()) {
+            availableNetworks = true;
+        } else {
+            availableNetworks = false;
+        }
+        return availableNetworks;
     }
 
     /**
@@ -122,6 +134,50 @@ public abstract class BaseActivity extends AppCompatActivity {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         if (getCurrentFocus() != null) {
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    /**
+     * fragment跳转不需要进栈
+     */
+    public void replaceFragment(Fragment fragment) {
+        try {
+//            getSupportFragmentManager().beginTransaction().replace(Window.ID_ANDROID_CONTENT,fragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(Window.ID_ANDROID_CONTENT, fragment, fragment.getClass().getName()).commit();
+        } catch (Throwable e) {
+        }
+    }
+
+    /**
+     * fragment跳转不需要进栈
+     */
+    public void addFragment(Fragment fragment){
+        try {
+            getSupportFragmentManager().beginTransaction().add(Window.ID_ANDROID_CONTENT,fragment,fragment.getClass().getName()).commit();
+        }catch (Throwable e){
+
+        }
+    }
+
+    /**
+     * fragment跳转，需要进栈（replace方法）
+     */
+    public void replaceFragmentNeedToStack(Fragment fragment){
+        try {
+            getSupportFragmentManager().beginTransaction().replace(Window.ID_ANDROID_CONTENT,fragment,fragment.getClass().getName()).addToBackStack(fragment.getClass().getName()).commit();
+        }catch (Throwable e){
+
+        }
+    }
+
+    /**
+     * fragment跳转，需要进栈。
+     */
+    public void addFragmentNeedToStack(Fragment fragment){
+        try {
+            getSupportFragmentManager().beginTransaction().add(Window.ID_ANDROID_CONTENT,fragment,fragment.getClass().getName()).addToBackStack(fragment.getClass().getName()).commit();
+        }catch (Throwable e){
+
         }
     }
 

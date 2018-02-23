@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.wq.R;
+import com.example.hasee.wq.activity.fragment.FragmentActivity;
 import com.example.hasee.wq.base.BaseActivity;
 import com.example.hasee.wq.fragment.ContentFragment;
 import com.example.hasee.wq.fragment.MineFragment;
@@ -40,7 +41,8 @@ public class MainActivity extends BaseActivity {
             public void run() {
                 textView.setText("小泰科技");
 //                MenuActivity.actionStart(MainActivity.this,"王清","123");
-                startActivity(new Intent(MainActivity.this, FunctionMenuActivity.class));
+                startActivity(new Intent(MainActivity.this, FragmentActivity.class));
+//                FragmentHostActivity.openFragment(MainActivity.this,MineFragment.newInstance());
             }
         }, 1000);
     }
