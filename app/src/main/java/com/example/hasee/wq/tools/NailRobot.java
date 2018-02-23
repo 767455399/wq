@@ -3,7 +3,6 @@ package com.example.hasee.wq.tools;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.example.hasee.wq.modle.NailRobotModle;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -90,6 +89,36 @@ public class NailRobot {
             }
         }
     }
+
+   public static class NailRobotModle{
+       /**
+        * msgtype : text
+        * text : {"content":"我就是我, 是不一样的烟火"}
+        * at : {"atMobiles":["156xxxx8827","189xxxx8325"],"isAtAll":false}
+        */
+
+       public String msgtype;
+       public TextBean text;
+       public AtBean at;
+
+       public  static class TextBean {
+           /**
+            * content : 我就是我, 是不一样的烟火
+            */
+
+           public String content;
+       }
+
+       public static class AtBean {
+           /**
+            * atMobiles : ["156xxxx8827","189xxxx8325"]
+            * isAtAll : false
+            */
+
+           public boolean isAtAll;
+           public List<String> atMobiles;
+       }
+   }
 
 
 }
