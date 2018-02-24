@@ -1,2 +1,3 @@
 include ':app',  ':module:zxing'
+include':newmodule'
 //include ':module:zxing'

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:xdj="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <SurfaceView
+        android:id="@+id/preview_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <com.example.mylibrary.camera.ViewfinderView
+        android:id="@+id/viewfinder_view"
+        xdj:qr_angleColor="#45a4f2"
+        xdj:qr_errorHint="请允许访问摄像头后重试"
+        xdj:qr_height="100dp"
+        xdj:qr_hint="将条码/二维码放入框内"
+        xdj:qr_offsetX="0dp"
+        xdj:qr_offsetY="0dp"
+        xdj:qr_showPossiblePoint="true"
+        xdj:qr_textErrorHintColor="@android:color/white"
+        xdj:qr_textHintColor="@android:color/darker_gray"
+        xdj:qr_width="400dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/capture_activity_margin_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/back_ibtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="11dp"
+            android:padding="5dp"
+            android:src="@drawable/zxing_back" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/flash_ibtn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="5dp"
+            android:src="@drawable/zxing_strobe_light" />
+
+        <ImageView
+            android:id="@+id/gallery_tv"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="11dp"
+            android:padding="5dp"
+            android:src="@drawable/zxing_album" />
+    </LinearLayout>
+
+
+</FrameLayout>

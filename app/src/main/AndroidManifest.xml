@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:name=".base.BaseApplication"
@@ -74,7 +75,8 @@
         <activity android:name=".activity.broadcast_receiver.BroadcastReceiverActivity" />
         <activity android:name=".activity.broadcast_receiver.SendBroadcastActivity" />
         <activity android:name=".activity.fragment.FragmentHostActivity" />
-        <activity android:name=".activity.DingTalkActivity"></activity>
+        <activity android:name=".activity.DingTalkActivity" />
+        <activity android:name=".activity.qr_code_scan.QRCodeScanActivity"></activity>
     </application>
 
 </manifest>

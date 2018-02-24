@@ -11,12 +11,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.wq.R;
+import com.example.hasee.wq.activity.qr_code_scan.QRCodeScanActivity;
 import com.example.hasee.wq.base.BaseActivity;
 import com.example.hasee.wq.fragment.ContentFragment;
 import com.example.hasee.wq.fragment.MineFragment;
 import com.example.hasee.wq.fragment.OrderFragment;
 import com.example.hasee.wq.fragment.ShopFragment;
-import com.example.mylibrary.ZxingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity {
     public void toOtherActivity() {
 //        phoneList.add("13554054250");
 //        DingTalkUtil.sengMsg(path,textMsg,phoneList);
-        startActivity(new Intent(MainActivity.this, ZxingActivity.class));
+        startActivity(new Intent(MainActivity.this, QRCodeScanActivity.class));
     }
 
     private void newHandler() {
