@@ -1,5 +1,6 @@
 package com.example.hasee.wq.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
@@ -15,7 +16,7 @@ import com.example.hasee.wq.fragment.ContentFragment;
 import com.example.hasee.wq.fragment.MineFragment;
 import com.example.hasee.wq.fragment.OrderFragment;
 import com.example.hasee.wq.fragment.ShopFragment;
-import com.example.hasee.wq.tools.DingTalkUtil;
+import com.example.mylibrary.ZxingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
     private String path="https://oapi.dingtalk.com/robot/send?access_token=455c76d858fd025a3f94464f9fc6743b918d81c44fd8e3d70cc4adc75d6ddc35";
 //    private String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"我就是我, 是不一样的烟火wq\"}}";
-    private String textMsg = "大小么";
+    private String textMsg = "你没有小鸡鸡吗？";
     private List<String> phoneList=new ArrayList<>();
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -55,10 +56,9 @@ public class MainActivity extends BaseActivity {
     }
 
     public void toOtherActivity() {
-//        phoneList.add("1866790680");
-        phoneList.clear();
-        DingTalkUtil.sengMsg(path,textMsg,phoneList);
-//        startActivity(new Intent(MainActivity.this, WebViewActivity.class));
+//        phoneList.add("13554054250");
+//        DingTalkUtil.sengMsg(path,textMsg,phoneList);
+        startActivity(new Intent(MainActivity.this, ZxingActivity.class));
     }
 
     private void newHandler() {

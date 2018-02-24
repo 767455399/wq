@@ -1,1 +1,2 @@
-include ':app'
+include ':app',  ':module:zxing'
+//include ':module:zxing'

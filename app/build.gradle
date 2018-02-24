@@ -47,4 +47,5 @@ dependencies {
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.zhy:percent-support-extends:1.0.1'
 //    implementation project(':module:zxing')
+    compile project(path: ':module:zxing')
 }
