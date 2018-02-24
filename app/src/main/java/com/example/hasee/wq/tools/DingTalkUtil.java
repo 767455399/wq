@@ -5,9 +5,6 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -17,8 +14,15 @@ import java.util.List;
  * Created by wangqing on 2018/2/23.
  */
 
-public class NailRobot {
-    private String path = "https://oapi.dingtalk.com/robot/send?access_token=455c76d858fd025a3f94464f9fc6743b918d81c44fd8e3d70cc4adc75d6ddc35";
+/**
+ * 使用方法：直接调用sengMsg方法，传递三个参数
+ * urlPath：设置钉钉机器人的群的请求地址，可以自己在任何顶顶群里设置（必填）。例：
+ * private String urlPath = "https://oapi.dingtalk.com/robot/send?access_token=455c76d858fd025a3f94464f9fc6743b918d81c44fd8e3d70cc4adc75d6ddc35";
+ * content：要发送的消息的内容（必填）
+ * phoneList：发送钉钉消息要@的人的手机号码，只需要手机号码，不需要@符号（选填）
+ */
+public class DingTalkUtil {
+
     public static void sengMsg(final String urlPath, final String content, final List<String> phoneList) {
         new Thread(new Runnable() {
             @Override
@@ -29,24 +33,22 @@ public class NailRobot {
     }
 
     public static void request(String urlPath, String content, List<String> phoneList) {
-        NailRobotModle nailRobotModle = new NailRobotModle();
-        nailRobotModle.msgtype = "text";
-        if (!TextUtils.isEmpty(content)) {
-            NailRobotModle.TextBean textBean = new NailRobotModle.TextBean();
-            textBean.content = content;
-            nailRobotModle.text = textBean;
-        }
-        if (phoneList != null) {
-            NailRobotModle.AtBean atBean = new NailRobotModle.AtBean();
-            atBean.atMobiles = phoneList;
-            nailRobotModle.at = atBean;
-        }
-        String json = new Gson().toJson(nailRobotModle);
-
-        // HttpClient 6.0被抛弃了
-        String result = "";
-        BufferedReader reader = null;
         try {
+            NailRobotModle nailRobotModle = new NailRobotModle();
+            nailRobotModle.msgtype = "text";
+            if (!TextUtils.isEmpty(content)) {
+                NailRobotModle.TextBean textBean = new NailRobotModle.TextBean();
+                textBean.content = content;
+                nailRobotModle.text = textBean;
+            } else {
+                return;
+            }
+            if (phoneList != null) {
+                NailRobotModle.AtBean atBean = new NailRobotModle.AtBean();
+                atBean.atMobiles = phoneList;
+                nailRobotModle.at = atBean;
+            }
+            String json = new Gson().toJson(nailRobotModle);
             URL url = new URL(urlPath);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
@@ -71,54 +73,42 @@ public class NailRobot {
                 outwritestream.close();
                 Log.d("hlhupload", "doJsonPost: conn" + conn.getResponseCode());
             }
-            if (conn.getResponseCode() == 200) {
-                reader = new BufferedReader(
-                        new InputStreamReader(conn.getInputStream()));
-                result = reader.readLine();
-            } else {
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            return;
         }
     }
 
-   public static class NailRobotModle{
-       /**
-        * msgtype : text
-        * text : {"content":"我就是我, 是不一样的烟火"}
-        * at : {"atMobiles":["156xxxx8827","189xxxx8325"],"isAtAll":false}
-        */
+    public static class NailRobotModle {
+        /**
+         * msgtype : text
+         * text : {"content":"我就是我, 是不一样的烟火"}
+         * at : {"atMobiles":["156xxxx8827","189xxxx8325"],"isAtAll":false}
+         */
 
-       public String msgtype;
-       public TextBean text;
-       public AtBean at;
+        public String msgtype;
+        public TextBean text;
+        public AtBean at;
 
-       public  static class TextBean {
-           /**
-            * content : 我就是我, 是不一样的烟火
-            */
+        public static class TextBean {
+            /**
+             * content : 我就是我, 是不一样的烟火
+             */
 
-           public String content;
-       }
+            public String content;
+        }
 
-       public static class AtBean {
-           /**
-            * atMobiles : ["156xxxx8827","189xxxx8325"]
-            * isAtAll : false
-            */
+        public static class AtBean {
+            /**
+             * atMobiles : ["156xxxx8827","189xxxx8325"]
+             * isAtAll : false
+             */
 
-           public boolean isAtAll;
-           public List<String> atMobiles;
-       }
-   }
+            public boolean isAtAll;
+            public List<String> atMobiles;
+        }
+    }
 
 
 }

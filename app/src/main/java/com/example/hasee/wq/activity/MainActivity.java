@@ -15,7 +15,7 @@ import com.example.hasee.wq.fragment.ContentFragment;
 import com.example.hasee.wq.fragment.MineFragment;
 import com.example.hasee.wq.fragment.OrderFragment;
 import com.example.hasee.wq.fragment.ShopFragment;
-import com.example.hasee.wq.tools.NailRobot;
+import com.example.hasee.wq.tools.DingTalkUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +55,9 @@ public class MainActivity extends BaseActivity {
     }
 
     public void toOtherActivity() {
-        phoneList.add("18667906808");
-        NailRobot.sengMsg(path,textMsg,phoneList);
+//        phoneList.add("1866790680");
+        phoneList.clear();
+        DingTalkUtil.sengMsg(path,textMsg,phoneList);
 //        startActivity(new Intent(MainActivity.this, WebViewActivity.class));
     }
 
