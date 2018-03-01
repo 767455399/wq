@@ -1,3 +1,6 @@
 include ':app',  ':module:zxing'
 include':newmodule'
+include':module:alipay'
+include':module:wechatpay'
+include':module:lianlianpay'
 //include ':module:zxing'

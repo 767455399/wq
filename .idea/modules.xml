@@ -3,9 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Wq.iml" filepath="$PROJECT_DIR$/Wq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module/alipay/alipay.iml" filepath="$PROJECT_DIR$/module/alipay/alipay.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module/lianlianpay/lianlianpay.iml" filepath="$PROJECT_DIR$/module/lianlianpay/lianlianpay.iml" />
       <module fileurl="file://$PROJECT_DIR$/module/module.iml" filepath="$PROJECT_DIR$/module/module.iml" />
       <module fileurl="file://$PROJECT_DIR$/newmodule/newmodule.iml" filepath="$PROJECT_DIR$/newmodule/newmodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/module/wechatpay/wechatpay.iml" filepath="$PROJECT_DIR$/module/wechatpay/wechatpay.iml" />
       <module fileurl="file://$PROJECT_DIR$/module/zxing/zxing.iml" filepath="$PROJECT_DIR$/module/zxing/zxing.iml" />
     </modules>
   </component>

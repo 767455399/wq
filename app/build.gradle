@@ -19,6 +19,34 @@ android {
     }
 }
 
+repositories {
+//    flatDir {
+//        dirs 'libs', '../module/lianlianpay/libs'//this way we can find the .aar file in libs folder
+//    }
+    flatDir {
+        dirs '../module/lianlianpay/libs','libs'
+        }
+}
+repositories {
+    flatDir {
+        dirs 'libs', '../module A/module B/libs'//this way we can find the .aar file in libs folder
+    }
+}
+
+
+//allprojects {
+//    repositories {
+//        jcenter()
+//
+//        flatDir {
+//            // 由于Library module中引用了 gif 库的 aar，在多 module 的情况下，
+//            // 其他的module编译会报错，所以需要在所有工程的repositories
+//            // 下把Library module中的libs目录添加到依赖关系中
+//            dirs project(':lianlianpay').file('libs')
+//        }
+//    }
+//}
+
 dependencies {
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:support-v4:26.1.0'
@@ -29,7 +57,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-//    compile project(':module:zxing')
+    //    compile project(':module:zxing')
     //Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     //Gson converter
@@ -46,7 +74,11 @@ dependencies {
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     compile 'com.zhy:percent-support-extends:1.0.1'
-//    implementation project(':module:zxing')
     compile project(path: ':module:zxing')
     compile project(path: ':newmodule')
+    compile project(path: ':module:alipay')
+    //    implementation project(':module:alipay')
+    implementation project(':module:wechatpay')
+    //    compile project(path:  ':module:lianlianpay')
+    compile project(':module:lianlianpay')
 }

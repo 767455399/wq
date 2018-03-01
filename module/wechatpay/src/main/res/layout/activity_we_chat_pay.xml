@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.tairanchina.taiheapp.WeChatPayActivity">
+
+    <EditText
+        android:id="@+id/weChatMesEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingLeft="10dp"
+        android:textColor="#000000"
+        android:background="@null"
+        android:maxLines="5"
+        android:hint="请输入微信支付信息"/>
+
+    <Button
+        android:id="@+id/weChatPayButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="微信支付"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"/>
+
+</LinearLayout>

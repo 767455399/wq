@@ -11,6 +11,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/module" />
+            <option value="$PROJECT_DIR$/module/alipay" />
+            <option value="$PROJECT_DIR$/module/lianlianpay" />
+            <option value="$PROJECT_DIR$/module/wechatpay" />
             <option value="$PROJECT_DIR$/module/zxing" />
             <option value="$PROJECT_DIR$/newmodule" />
           </set>
