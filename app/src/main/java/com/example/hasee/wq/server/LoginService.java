@@ -1,6 +1,7 @@
 package com.example.hasee.wq.server;
 
 import com.example.hasee.wq.modle.AccountModle;
+import com.example.hasee.wq.modle.LianLianPayModle;
 import com.example.hasee.wq.modle.LoginModle;
 import com.example.hasee.wq.modle.SportsRuleModel;
 
@@ -47,6 +48,12 @@ public interface LoginService {
      */
     @GET("app/run/rule")
     Observable<SportsRuleModel> reqRule();
+
+    /**
+     * 连连支付
+     */
+    @GET("lianlian")
+    Observable<LianLianPayModle>pay();
 
 
 

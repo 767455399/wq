@@ -6,17 +6,22 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class LianLianPayActivity extends AppCompatActivity {
+    private String path = "http://10.200.4.37:8080/funds-channel/lianlian";
     private static final int REQ_PAY = 1;
     public static final String RET_CODE_SUCCESS = "0000";// 0000 交易成功
     public static final String RET_CODE_PROCESS = "2008";// 2008 支付处理中
@@ -38,65 +43,70 @@ public class LianLianPayActivity extends AppCompatActivity {
         lianLianPayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                lianLianPay();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        lianlianPay1();
+                    }
+                }).start();
+
             }
         });
 
     }
-//
-//    "oid_partner":"201408071000001543",
-//            "risk_item":"{\"user_info_bind_phone\":\"18602702340\",\"user_info_mercht_userno\":\"testUserId\",\"frms_ware_category\":\"1999\",\"user_info_dt_register\":\"20180228104508\"}",
-//            "sign":"837b950bba9bf484edfcd6cd8e66a349",
-//            "dt_order":"20180228104508",
-//            "name_goods":"测试矿泉水",
-//            "notify_url":"http://115.236.161.67:50076/funds-channel-notify/notify/pay/LIANLIAN_APP/201408071000001543/gateway.notify",
-//            "version":"1.0",
-//            "busi_partner":"101001",
-//            "no_order":"CDD2018022810450839952877",
-//            "user_id":"testUserId",
-//            "money_order":0.01,
-//            "sign_type":"MD5",
-//            "valid_order":"10080"
-//}
 
     private void lianLianPay() {
         String sign = null;
-        SimpleDateFormat dataFormat = new SimpleDateFormat(
-                "yyyyMMddHHmmss");
-        Date date = new Date();
-        String timeString = dataFormat.format(date);
         PayOrder payOrder = new PayOrder();
-        payOrder.setNo_order(timeString);
-        payOrder.setDt_order(timeString);
+        payOrder.setNo_order("CDD2018030117054872884006");
+        payOrder.setDt_order("20180301170548");
         payOrder.setOid_partner("201408071000001543");//000
-        payOrder.setRisk_item(constructRiskItem());//000
-//        payOrder.setDt_order("20180228104508");//000
+        //payOrder.setRisk_item(constructRiskItem());//000
+        payOrder.setRisk_item("{\"frms_ware_category\":\"1999\"}");//000
+        payOrder.setDt_order("20180301151357");//000
         payOrder.setName_goods("测试矿泉水");//000
-        payOrder.setNotify_url("http://115.236.161.67:50076/funds-channel-notify/notify/pay/LIANLIAN_APP/201408071000001543/gateway.notify");//000
+        payOrder.setNotify_url("http://test.com");//000
         payOrder.setBusi_partner("101001");//000
-//        payOrder.setNo_order("CDD2018022810450839952877");//000
+       payOrder.setNo_order("CDD2018022810450839952877");//000
         payOrder.setUser_id("testUserId");
         payOrder.setMoney_order("0.01");
-        payOrder.setSign_type("MD5");//000
+        payOrder.setSign_type("RSA");//000
         payOrder.setValid_order("10080");//000
-        payOrder.setFlag_modify("1");
-        try {
-            sign = URLEncoder.encode("837b950bba9bf484edfcd6cd8e66a349", "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        payOrder.setSign(sign);//000
-        String content4Pay = BaseHelper.toJSONString(payOrder);
+        Gson gson = new Gson();
+        payOrder.setSign("aaIHRMSi67J1Ke49VnQ4Qi1HQ+1uww3cmszLwoDo90ZTyXbFaHQcG6wLsSTHkBjorQOwdavEzPXEkrNCu35QYQJS2mpcQQoYMYppU/W0T+WzIBhcUOt4quu5XvIG98ui/NgTlbRRDe8p2ojIpZ8TezKlrMLKbEIodTwjoiIb8Cs=");//000
+        String content4Pay1 = new Gson().toJson(payOrder);
         MobileSecurePayer mobileSecurePayer = new MobileSecurePayer();
-        mobileSecurePayer.pay(content4Pay, mHandler, REQ_PAY, LianLianPayActivity.this, false);
-
-
+        mobileSecurePayer.pay(content4Pay1, mHandler, REQ_PAY, LianLianPayActivity.this, false);
     }
 
+    /**
+     * 正式服调用
+     */
+    private void lianlianPay1() {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        Request request = new Request.Builder().get().url(path).build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String content = response.body().string();
+                MobileSecurePayer mobileSecurePayer = new MobileSecurePayer();
+                mobileSecurePayer.pay(content, mHandler, REQ_PAY, LianLianPayActivity.this, false);
+            }
+        });
+    }
+
+    /**
+     *
+     */
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            super.handleMessage(msg);
+//            super.handleMessage(msg);
             String strRet = (String) msg.obj;
             switch (msg.what) {
                 case 1: {
@@ -108,10 +118,10 @@ public class LianLianPayActivity extends AppCompatActivity {
                     if (RET_CODE_SUCCESS.equals(retCode)) {
                         // TODO 卡前置模式返回的银行卡绑定协议号，用来下次支付时使用，此处仅作为示例使用。正式接入时去掉
                         if (pay_type_flag == 1) {
-                            TextView tv_agree_no = (TextView) findViewById(R.id.tv_agree_no);
-                            tv_agree_no.setVisibility(View.VISIBLE);
-                            tv_agree_no.setText(objContent.optString(
-                                    "agreementno", ""));
+//                            TextView tv_agree_no = (TextView) findViewById(R.id.tv_agree_no);
+//                            tv_agree_no.setVisibility(View.VISIBLE);
+//                            tv_agree_no.setText(objContent.optString(
+//                                    "agreementno", ""));
                         }
                         BaseHelper.showDialog(LianLianPayActivity.this, "提示",
                                 "支付成功，交易状态码：" + retCode + " 返回报文:" + strRet,
@@ -121,6 +131,7 @@ public class LianLianPayActivity extends AppCompatActivity {
                         String resulPay = objContent.optString("result_pay");
                         if (RESULT_PAY_PROCESSING
                                 .equalsIgnoreCase(resulPay)) {
+                            //TODO 正式服去掉
                             BaseHelper.showDialog(LianLianPayActivity.this, "提示",
                                     objContent.optString("ret_msg") + "交易状态码："
                                             + retCode + " 返回报文:" + strRet,
@@ -128,7 +139,7 @@ public class LianLianPayActivity extends AppCompatActivity {
                         }
 
                     } else {
-                        // TODO 失败
+                        // TODO 失败 正式服去掉
                         BaseHelper.showDialog(LianLianPayActivity.this, "提示", retMsg
                                         + "，交易状态码:" + retCode + " 返回报文:" + strRet,
                                 android.R.drawable.ic_dialog_alert);
@@ -145,7 +156,7 @@ public class LianLianPayActivity extends AppCompatActivity {
         JSONObject mRiskItem = new JSONObject();
         try {
             mRiskItem.put("user_info_bind_phone", "18602702340");
-            mRiskItem.put("user_info_dt_register", "20180228104508");
+            mRiskItem.put("user_info_dt_register", "20180301151357");
             mRiskItem.put("frms_ware_category", "1999");
             mRiskItem.put("user_info_mercht_userno", "testUserId");
 
