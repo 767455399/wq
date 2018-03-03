@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:name=".base.BaseApplication"
@@ -42,10 +42,8 @@
                 <data android:scheme="xtwq" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activity.CanvasActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.EventBusActivity" />
         <activity android:name=".activity.DelayedOperationActivity" />
         <activity
             android:name=".activity.startup_mode.StandardActivity"
@@ -77,7 +75,9 @@
         <activity android:name=".activity.broadcast_receiver.SendBroadcastActivity" />
         <activity android:name=".activity.fragment.FragmentHostActivity" />
         <activity android:name=".activity.DingTalkActivity" />
-        <activity android:name=".activity.qr_code_scan.QRCodeScanActivity"></activity>
+        <activity android:name=".activity.qr_code_scan.QRCodeScanActivity" />
+        <activity android:name=".activity.eventbus.EventBusActivity"/>
+        <activity android:name=".activity.eventbus.SendActivity"></activity>
     </application>
 
 </manifest>

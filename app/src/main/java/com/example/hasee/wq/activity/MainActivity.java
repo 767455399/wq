@@ -11,21 +11,26 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.wq.R;
+import com.example.hasee.wq.activity.eventbus.EventBusActivity;
 import com.example.hasee.wq.base.BaseActivity;
 import com.example.hasee.wq.fragment.ContentFragment;
 import com.example.hasee.wq.fragment.MineFragment;
 import com.example.hasee.wq.fragment.OrderFragment;
 import com.example.hasee.wq.fragment.ShopFragment;
-import com.example.lianlianpay.LianLianPayActivity;
+import com.example.hasee.wq.modle.LianLianPayModle;
+import com.example.hasee.wq.tools.ToastUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
-    private String path="https://oapi.dingtalk.com/robot/send?access_token=455c76d858fd025a3f94464f9fc6743b918d81c44fd8e3d70cc4adc75d6ddc35";
-//    private String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"我就是我, 是不一样的烟火wq\"}}";
+    private String path = "https://oapi.dingtalk.com/robot/send?access_token=455c76d858fd025a3f94464f9fc6743b918d81c44fd8e3d70cc4adc75d6ddc35";
+    //    private String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"我就是我, 是不一样的烟火wq\"}}";
     private String textMsg = "你没有小鸡鸡吗？";
-    private List<String> phoneList=new ArrayList<>();
+    private List<String> phoneList = new ArrayList<>();
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private MineFragment mineFragment;
@@ -58,7 +63,14 @@ public class MainActivity extends BaseActivity {
     public void toOtherActivity() {
 //        phoneList.add("13554054250");
 //        DingTalkUtil.sengMsg(path,textMsg,phoneList);
-        startActivity(new Intent(MainActivity.this, LianLianPayActivity.class));
+        startActivity(new Intent(MainActivity.this, EventBusActivity.class));
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void to(LianLianPayModle lianLianPayModle) {
+//        phoneList.add("13554054250");
+//        DingTalkUtil.sengMsg(path,textMsg,phoneList);
+        ToastUtil.showNormalToast("sbsbsb");
     }
 
     private void newHandler() {

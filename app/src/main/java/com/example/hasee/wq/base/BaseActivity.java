@@ -20,6 +20,10 @@ import android.view.inputmethod.InputMethodManager;
 import com.example.hasee.wq.tools.FastClick;
 import com.example.hasee.wq.tools.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public abstract class BaseActivity extends AppCompatActivity {
     private boolean availableNetworks;
 
@@ -36,6 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         initView();
         initData();
         steepStatusBar();
@@ -151,6 +156,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * fragment跳转不需要进栈
      */
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void addFragment(Fragment fragment){
         try {
             getSupportFragmentManager().beginTransaction().add(Window.ID_ANDROID_CONTENT,fragment,fragment.getClass().getName()).commit();
@@ -185,5 +191,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         hideSoftInput();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

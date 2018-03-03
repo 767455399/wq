@@ -24,15 +24,14 @@ repositories {
 //        dirs 'libs', '../module/lianlianpay/libs'//this way we can find the .aar file in libs folder
 //    }
     flatDir {
-        dirs '../module/lianlianpay/libs','libs'
-        }
+        dirs '../module/lianlianpay/libs', 'libs'
+    }
 }
 repositories {
     flatDir {
         dirs 'libs', '../module A/module B/libs'//this way we can find the .aar file in libs folder
     }
 }
-
 
 //allprojects {
 //    repositories {
@@ -81,4 +80,5 @@ dependencies {
     implementation project(':module:wechatpay')
     //    compile project(path:  ':module:lianlianpay')
     compile project(':module:lianlianpay')
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
