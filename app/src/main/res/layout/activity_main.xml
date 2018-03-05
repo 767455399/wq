@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#77d87d"
     android:orientation="vertical"
-    tools:context="com.example.hasee.wq.activity.MainActivity">
+    tools:context="com.example.hasee.taiheapp.activity.MainActivity">
 
     <TextView
         android:id="@+id/textView"

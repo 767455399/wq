@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context="com.example.hasee.wq.activity.WebViewActivity">
+    tools:context="com.example.hasee.taiheapp.activity.WebViewActivity">
 
     <ImageView
         android:id="@+id/backImageView"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#76a6d5"
     android:orientation="vertical"
-    tools:context="com.example.hasee.wq.activity.percent.PercentActivity">
+    tools:context="com.example.hasee.taiheapp.activity.percent.PercentActivity">
 
 
 

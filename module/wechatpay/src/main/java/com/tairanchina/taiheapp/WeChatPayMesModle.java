@@ -1,5 +1,7 @@
 package com.tairanchina.taiheapp;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by wangqing on 2018/2/26.
  */
@@ -7,24 +9,21 @@ package com.tairanchina.taiheapp;
 public class WeChatPayMesModle {
 
     /**
-     * nonce_str : NqD6HsvucyIvBN47
+     * package : Sign=WXPay
      * appid : wxd9ef3b0afe696e5f
-     * sign : 0AB84EABF8A8F0AFECCC0DD07633A036
-     * trade_type : APP
-     * return_msg : OK
-     * result_code : SUCCESS
-     * mch_id : 1379524802
-     * return_code : SUCCESS
-     * prepay_id : wx20180226150135d81bf444340465379379
+     * sign : 5F03EAD1ADA359D16A7207BBDEF6A036
+     * partnerid : 1379524802
+     * prepayid : wx20180305112137bf2ea553950123112682
+     * noncestr : Ejf5rOgCiLumiX6y
+     * timestamp : 1520218819
      */
 
-    public String nonce_str;
+    @SerializedName("package")
+    public String packageX;
     public String appid;
     public String sign;
-    public String trade_type;
-    public String return_msg;
-    public String result_code;
-    public String mch_id;
-    public String return_code;
-    public String prepay_id;
+    public String partnerid;
+    public String prepayid;
+    public String noncestr;
+    public String timestamp;
 }

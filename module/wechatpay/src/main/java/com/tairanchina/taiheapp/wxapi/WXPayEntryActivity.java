@@ -1,5 +1,6 @@
 package com.tairanchina.taiheapp.wxapi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -8,17 +9,29 @@ import com.tairanchina.taiheapp.R;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEventHandler {
+	private IWXAPI api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wxpay_entry);
+        api= WXAPIFactory.createWXAPI(this,"wxd9ef3b0afe696e5f");
+        api.handleIntent(getIntent(),this);
     }
 
-    @Override
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		setIntent(intent);
+		api.handleIntent(intent,this);
+	}
+
+	@Override
     public void onReq(BaseReq baseReq) {
 
     }

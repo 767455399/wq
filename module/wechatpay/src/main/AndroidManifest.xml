@@ -10,7 +10,15 @@
 
     <application>
         <activity android:name=".WeChatPayActivity" />
-        <activity android:name=".wxapi.WXPayEntryActivity"></activity>
+        <activity android:name=".wxapi.WXPayEntryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wxd9ef3b0afe696e5f" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
