@@ -1,9 +1,9 @@
 package com.example.hasee.taiheapp.server;
 
 import com.example.hasee.taiheapp.modle.AccountModle;
-import com.example.hasee.taiheapp.modle.LianLianPayModle;
 import com.example.hasee.taiheapp.modle.LoginModle;
 import com.example.hasee.taiheapp.modle.SportsRuleModel;
+import com.example.lianlianpay.LianLianPayModle;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;

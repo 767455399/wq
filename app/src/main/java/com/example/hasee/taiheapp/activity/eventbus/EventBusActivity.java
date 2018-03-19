@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.hasee.taiheapp.R;
-import com.example.hasee.taiheapp.modle.LianLianPayModle;
+import com.example.lianlianpay.LianLianPayModle;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name="com.example.hasee.com.tairanchina.taiheapp.base.BaseApplication"
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/trpay_red_icon"
         android:label="@string/app_name"
@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <receiver
-            android:name="com.example.hasee.com.tairanchina.taiheapp.BroadCastReceivers"
+            android:name=".BroadCastReceivers"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -27,7 +27,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,42 +42,42 @@
                 <data android:scheme="xtwq" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.CanvasActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.LoginActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.DelayedOperationActivity" />
+        <activity android:name=".activity.CanvasActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.DelayedOperationActivity" />
         <activity
-            android:name="com.example.hasee.com.tairanchina.taiheapp.activity.startup_mode.StandardActivity"
+            android:name=".activity.startup_mode.StandardActivity"
             android:launchMode="standard" />
         <activity
-            android:name="com.example.hasee.com.tairanchina.taiheapp.activity.startup_mode.SingleTopActivity"
+            android:name=".activity.startup_mode.SingleTopActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name="com.example.hasee.com.tairanchina.taiheapp.activity.startup_mode.SingleInstanceActivity"
+            android:name=".activity.startup_mode.SingleInstanceActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name="com.example.hasee.com.tairanchina.taiheapp.activity.startup_mode.SingleTaskActivity"
+            android:name=".activity.startup_mode.SingleTaskActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.startup_mode.OtherActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.fragment.FragmentActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.TablayoutActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.HandlerActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.WebViewActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.PowerPermissionActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.startactivityforresult.StartOneActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.startactivityforresult.StartTwoActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.call_phone.CallPhoneActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.menu.MenuActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.leakcanary.LeakCanaryActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.percent.PercentActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.base.BaseActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.FunctionMenuActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.broadcast_receiver.BroadcastReceiverActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.broadcast_receiver.SendBroadcastActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.fragment.FragmentHostActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.DingTalkActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.qr_code_scan.QRCodeScanActivity" />
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.eventbus.EventBusActivity"/>
-        <activity android:name="com.example.hasee.com.tairanchina.taiheapp.activity.eventbus.SendActivity"></activity>
+        <activity android:name=".activity.startup_mode.OtherActivity" />
+        <activity android:name=".activity.fragment.FragmentActivity" />
+        <activity android:name=".activity.TablayoutActivity" />
+        <activity android:name=".activity.HandlerActivity" />
+        <activity android:name=".activity.WebViewActivity" />
+        <activity android:name=".activity.PowerPermissionActivity" />
+        <activity android:name=".activity.startactivityforresult.StartOneActivity" />
+        <activity android:name=".activity.startactivityforresult.StartTwoActivity" />
+        <activity android:name=".activity.call_phone.CallPhoneActivity" />
+        <activity android:name=".activity.menu.MenuActivity" />
+        <activity android:name=".leakcanary.LeakCanaryActivity" />
+        <activity android:name=".activity.percent.PercentActivity" />
+        <activity android:name=".base.BaseActivity" />
+        <activity android:name=".activity.FunctionMenuActivity" />
+        <activity android:name=".activity.broadcast_receiver.BroadcastReceiverActivity" />
+        <activity android:name=".activity.broadcast_receiver.SendBroadcastActivity" />
+        <activity android:name=".activity.fragment.FragmentHostActivity" />
+        <activity android:name=".activity.DingTalkActivity" />
+        <activity android:name=".activity.qr_code_scan.QRCodeScanActivity" />
+        <activity android:name=".activity.eventbus.EventBusActivity"/>
+        <activity android:name=".activity.eventbus.SendActivity"></activity>
     </application>
 
 </manifest>

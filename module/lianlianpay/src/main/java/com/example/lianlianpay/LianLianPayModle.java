@@ -5,5 +5,7 @@ package com.example.lianlianpay;
  */
 
 public class LianLianPayModle {
+    public String busi_partner;
+    public int no_order;
 
 }

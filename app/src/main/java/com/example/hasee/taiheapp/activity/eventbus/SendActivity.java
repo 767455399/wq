@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.hasee.taiheapp.R;
-import com.example.hasee.taiheapp.modle.LianLianPayModle;
+import com.example.lianlianpay.LianLianPayModle;
 
 import org.greenrobot.eventbus.EventBus;
 

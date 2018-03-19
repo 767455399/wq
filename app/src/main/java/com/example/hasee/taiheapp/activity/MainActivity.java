@@ -16,8 +16,8 @@ import com.example.hasee.taiheapp.fragment.ContentFragment;
 import com.example.hasee.taiheapp.fragment.MineFragment;
 import com.example.hasee.taiheapp.fragment.OrderFragment;
 import com.example.hasee.taiheapp.fragment.ShopFragment;
-import com.example.hasee.taiheapp.modle.LianLianPayModle;
 import com.example.hasee.taiheapp.tools.ToastUtil;
+import com.example.lianlianpay.LianLianPayModle;
 import com.tairanchina.taiheapp.WeChatPayActivity;
 
 import org.greenrobot.eventbus.Subscribe;

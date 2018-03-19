@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
 
 import com.example.hasee.taiheapp.R;
 import com.example.hasee.taiheapp.base.BaseActivity;
-import com.example.hasee.taiheapp.modle.LianLianPayModle;
 import com.example.hasee.taiheapp.tools.ToastUtil;
+import com.example.lianlianpay.LianLianPayModle;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
