@@ -29,6 +29,7 @@ public class TablayoutActivity extends AppCompatActivity {
 
     private void initView() {
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.requestFocusFromTouch();
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -54,4 +55,15 @@ public class TablayoutActivity extends AppCompatActivity {
             }
         });
     }
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        if(ev.getAction()==MotionEvent.ACTION_DOWN){
+//            onUserInteraction();
+//        }
+//        if(getWindow().superDispatchTouchEvent(ev)){
+//            return true;
+//        }
+//        return onTouchEvent(ev);
+//    }
 }

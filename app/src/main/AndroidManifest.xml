@@ -76,8 +76,10 @@
         <activity android:name=".activity.fragment.FragmentHostActivity" />
         <activity android:name=".activity.DingTalkActivity" />
         <activity android:name=".activity.qr_code_scan.QRCodeScanActivity" />
-        <activity android:name=".activity.eventbus.EventBusActivity"/>
-        <activity android:name=".activity.eventbus.SendActivity"></activity>
+        <activity android:name=".activity.eventbus.EventBusActivity" />
+        <activity android:name=".activity.eventbus.SendActivity" />
+        <activity android:name=".activity.TestActivity" />
+        <activity android:name=".activity.laijiazai.LaiJiaZaiActivity"></activity>
     </application>
 
 </manifest>

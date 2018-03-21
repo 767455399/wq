@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.taiheapp.R;
-import com.example.hasee.taiheapp.activity.fragment.FragmentsActivity;
 import com.example.hasee.taiheapp.base.BaseActivity;
 import com.example.hasee.taiheapp.fragment.ContentFragment;
 import com.example.hasee.taiheapp.fragment.MineFragment;
@@ -63,7 +62,7 @@ public class MainActivity extends BaseActivity {
     public void toOtherActivity() {
 //        phoneList.add("13554054250");
 //        DingTalkUtil.sengMsg(path,textMsg,phoneList);
-        startActivity(new Intent(MainActivity.this, FragmentsActivity.class));
+        startActivity(new Intent(MainActivity.this, TestActivity.class));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

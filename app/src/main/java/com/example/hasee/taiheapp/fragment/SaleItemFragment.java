@@ -6,9 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.hasee.taiheapp.R;
+import com.example.hasee.taiheapp.tools.ToastUtil;
 
 /**
  * Created by wangqing on 2018/1/18.
@@ -16,12 +17,17 @@ import com.example.hasee.taiheapp.R;
 
 public class SaleItemFragment extends Fragment {
     public static final String BUNDLE="BUNDLE";
-    private TextView textView;
+    private Button button;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sale_item,container,false);
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
     }
 
     public static SaleItemFragment newInstance(String content) {
@@ -35,7 +41,13 @@ public class SaleItemFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        textView=(TextView)view.findViewById(R.id.textView);
-        textView.setText(getArguments().getString(BUNDLE));
+        button=(Button) view.findViewById(R.id.button);
+        button.setText(getArguments().getString(BUNDLE));
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               ToastUtil.showNormalToast("点击了");
+            }
+        });
     }
 }
