@@ -3,9 +3,9 @@ package com.example.hasee.taiheapp.activity.fragment;
 import android.os.Bundle;
 
 import com.example.hasee.taiheapp.base.BaseActivity;
-import com.example.hasee.taiheapp.fragment.MineFragment;
+import com.example.hasee.taiheapp.fragment.TabLayoutFragment;
 
-public class FragmentActivity extends BaseActivity {
+public class FragmentsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class FragmentActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        replaceFragment(MineFragment.newInstance());
+        replaceFragment(TabLayoutFragment.newInstance());
 
     }
 

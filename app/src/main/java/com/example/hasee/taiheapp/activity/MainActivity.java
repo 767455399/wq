@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.taiheapp.R;
+import com.example.hasee.taiheapp.activity.fragment.FragmentsActivity;
 import com.example.hasee.taiheapp.base.BaseActivity;
 import com.example.hasee.taiheapp.fragment.ContentFragment;
 import com.example.hasee.taiheapp.fragment.MineFragment;
@@ -18,7 +19,6 @@ import com.example.hasee.taiheapp.fragment.OrderFragment;
 import com.example.hasee.taiheapp.fragment.ShopFragment;
 import com.example.hasee.taiheapp.tools.ToastUtil;
 import com.example.lianlianpay.LianLianPayModle;
-import com.tairanchina.taiheapp.WeChatPayActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -63,7 +63,7 @@ public class MainActivity extends BaseActivity {
     public void toOtherActivity() {
 //        phoneList.add("13554054250");
 //        DingTalkUtil.sengMsg(path,textMsg,phoneList);
-        startActivity(new Intent(MainActivity.this, WeChatPayActivity.class));
+        startActivity(new Intent(MainActivity.this, FragmentsActivity.class));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

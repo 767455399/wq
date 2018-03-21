@@ -58,7 +58,7 @@
             android:name=".activity.startup_mode.SingleTaskActivity"
             android:launchMode="singleTask" />
         <activity android:name=".activity.startup_mode.OtherActivity" />
-        <activity android:name=".activity.fragment.FragmentActivity" />
+        <activity android:name=".activity.fragment.FragmentsActivity" />
         <activity android:name=".activity.TablayoutActivity" />
         <activity android:name=".activity.HandlerActivity" />
         <activity android:name=".activity.WebViewActivity" />
