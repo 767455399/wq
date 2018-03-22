@@ -79,7 +79,7 @@
         <activity android:name=".activity.eventbus.EventBusActivity" />
         <activity android:name=".activity.eventbus.SendActivity" />
         <activity android:name=".activity.TestActivity" />
-        <activity android:name=".activity.laijiazai.LaiJiaZaiActivity"></activity>
+        <activity android:name=".activity.laijiazai.LaiJiaZaiActivity" />
     </application>
 
 </manifest>
