@@ -1,5 +1,7 @@
 package com.example.hasee.taiheapp.activity;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.taiheapp.R;
-import com.example.hasee.taiheapp.activity.lazy_load.LazyLoadActivity;
+import com.example.hasee.taiheapp.activity.view_click.ViewClickActivity;
 import com.example.hasee.taiheapp.base.BaseActivity;
 import com.example.hasee.taiheapp.fragment.ContentFragment;
 import com.example.hasee.taiheapp.fragment.MineFragment;
@@ -63,7 +65,7 @@ public class MainActivity extends BaseActivity {
     public void toOtherActivity() {
 //        phoneList.add("13554054250");
 //        DingTalkUtil.sengMsg(path,textMsg,phoneList);
-        startActivity(new Intent(MainActivity.this, LazyLoadActivity.class));
+        startActivity(new Intent(MainActivity.this, ViewClickActivity.class));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -130,6 +132,13 @@ public class MainActivity extends BaseActivity {
 //        tabLayout.addTab(tabLayout.newTab().setText("商城2"));
 //        tabLayout.addTab(tabLayout.newTab().setText("订单2"));
 //        tabLayout.addTab(tabLayout.newTab().setText("我的2"));
+        /**
+         * 获取系统分配的内存的大小，小米和谷歌
+         */
+        ActivityManager activityManager= (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        int memory=activityManager.getLargeMemoryClass();
+        textView.setText("系统分配app"+memory);
+        ToastUtil.showNormalToast("系统分配app"+memory);
         tabLayout.setupWithViewPager(viewPager);
         if (tabTitles.length > 5) {
             tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -201,6 +210,7 @@ public class MainActivity extends BaseActivity {
 
 
     }
+
 
     @Override
     public void initData() {

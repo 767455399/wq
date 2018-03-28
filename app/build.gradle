@@ -82,4 +82,5 @@ dependencies {
     //    compile project(path:  ':module:lianlianpay')
     compile project(':module:lianlianpay')
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'org.litepal.android:core:1.4.1'
 }
