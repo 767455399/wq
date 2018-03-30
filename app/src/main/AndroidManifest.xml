@@ -82,7 +82,9 @@
         <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.laijiazai.LaiJiaZaiActivity" />
         <activity android:name=".activity.lazy_load.LazyLoadActivity" />
-        <activity android:name=".activity.view_click.ViewClickActivity"></activity>
+        <activity android:name=".activity.view_click.ViewClickActivity" />
+        <activity android:name=".activity.litepal.LitePalActivity" />
+        <activity android:name=".activity.litepal.ShowLitePalActivity"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,8 @@ import android.support.multidex.MultiDexApplication;
 
 import com.squareup.leakcanary.LeakCanary;
 
+import org.litepal.LitePal;
+
 /**
  * Created by wangqing on 2017/12/15.
  */
@@ -19,6 +21,7 @@ public class BaseApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         applicationContext = getApplicationContext();
+        LitePal.initialize(applicationContext);
         if(LeakCanary.isInAnalyzerProcess(this)){
             return;
         }
