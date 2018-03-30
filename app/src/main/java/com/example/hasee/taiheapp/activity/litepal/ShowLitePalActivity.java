@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.hasee.taiheapp.R;
 import com.example.hasee.taiheapp.base.BaseActivity;
-import com.example.hasee.taiheapp.tools.ToastUtil;
 
 import org.litepal.crud.DataSupport;
 
@@ -74,7 +73,6 @@ public class ShowLitePalActivity extends BaseActivity {
             holder.idTextView.setText(String.valueOf(list.get(position).bookId));
             holder.nameTextView.setText(list.get(position).bookName);
             holder.priceTextView.setText(String.valueOf(list.get(position).bookPrice));
-
         }
 
 //        @Override

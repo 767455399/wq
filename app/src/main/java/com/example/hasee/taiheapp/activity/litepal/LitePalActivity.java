@@ -14,11 +14,10 @@ import com.example.hasee.taiheapp.tools.ToastUtil;
 import org.litepal.LitePal;
 import org.litepal.crud.DataSupport;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LitePalActivity extends BaseActivity {
-    private Button creatDataButton, addDataButton, delteDataButton, updateDataButton,viewButton;
+    private Button creatDataButton, addDataButton, delteDataButton, updateDataButton, viewButton;
     private EditText idEditText, nameEditText, priceEditText, linkEditText;
 
     String id;
@@ -42,7 +41,7 @@ public class LitePalActivity extends BaseActivity {
         nameEditText = f(R.id.nameEditText);
         priceEditText = f(R.id.priceEditText);
         linkEditText = f(R.id.linkEditText);
-        viewButton=f(R.id.viewButton);
+        viewButton = f(R.id.viewButton);
         creatDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,15 +53,16 @@ public class LitePalActivity extends BaseActivity {
         addDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                addData();
-                addData1();
+                addData();
             }
         });
 
         delteDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DataSupport.deleteAll("Book", "id<?", "3");
+                //条件限制
+                // DataSupport.deleteAll("Book", "id<?", "3");
+                DataSupport.deleteAll(Book.class);
             }
         });
 
@@ -76,7 +76,7 @@ public class LitePalActivity extends BaseActivity {
         viewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LitePalActivity.this,ShowLitePalActivity.class));
+                startActivity(new Intent(LitePalActivity.this, ShowLitePalActivity.class));
 //                lookData();
             }
         });
@@ -84,12 +84,12 @@ public class LitePalActivity extends BaseActivity {
 
     }
 
-    private void lookData(){
-        List<Book>books= DataSupport.findAll(Book.class);
-        for(int i=0;i<books.size();i++){
-           int id=books.get(i).getBookId();
-           double price=books.get(i).getBookPrice();
-           String name=books.get(i).getBookName();
+    private void lookData() {
+        List<Book> books = DataSupport.findAll(Book.class);
+        for (int i = 0; i < books.size(); i++) {
+            int id = books.get(i).getBookId();
+            double price = books.get(i).getBookPrice();
+            String name = books.get(i).getBookName();
         }
     }
 
@@ -117,11 +117,11 @@ public class LitePalActivity extends BaseActivity {
 
     }
 
-    private void addData1(){
-        for(int i=0;i<10;i++){
-            Book book=new Book();
+    private void addData1() {
+        for (int i = 0; i < 10; i++) {
+            Book book = new Book();
             book.setBookId(i);
-            book.setBookName("苹果"+i);
+            book.setBookName("苹果" + i);
             book.setBookPrice(11.11);
             book.setImageUrl("http://img.my.csdn.net/uploads/201309/01/1378037128_5291.jpg");
             book.save();
@@ -129,7 +129,6 @@ public class LitePalActivity extends BaseActivity {
     }
 
     private void addData() {
-        //  idEditText,nameEditText,priceEditText,linkEditText
         getEditTextDate();
         if (TextUtils.isEmpty(id)) {
             ToastUtil.showNormalToast("请输入商品id");
@@ -137,19 +136,17 @@ public class LitePalActivity extends BaseActivity {
             ToastUtil.showNormalToast("请输入商品名称");
         } else if (TextUtils.isEmpty(price)) {
             ToastUtil.showNormalToast("请输入商品价格");
-        } else if (TextUtils.isEmpty(link)) {
-            ToastUtil.showNormalToast("请输入商品图片链接");
         } else {
-            ShopModel shopModel = new ShopModel();
-            List<ShopModel.GoodsListBean> list=new ArrayList<>();
-            ShopModel.GoodsListBean goodsListBean = new ShopModel.GoodsListBean();
-            goodsListBean.id = Integer.parseInt(id);
-            goodsListBean.link = link;
-            goodsListBean.name = name;
-            goodsListBean.price = Double.parseDouble(price);
-            list.add(goodsListBean);
-            shopModel.goodsList=list;
-            shopModel.save();
+            Book book = new Book();
+            book.setBookId(Integer.parseInt(id));
+            book.setBookName(name);
+            book.setBookPrice(Double.parseDouble(price));
+            if (link.contains(".jpg")) {
+                book.setImageUrl(link);
+            } else {
+                book.setImageUrl("http://img.my.csdn.net/uploads/201309/01/1378037128_5291.jpg");
+            }
+            book.save();
         }
 
     }
@@ -160,9 +157,9 @@ public class LitePalActivity extends BaseActivity {
     }
 
     private void getEditTextDate() {
-         id = idEditText.getText().toString();
-         name = nameEditText.getText().toString();
-         price = priceEditText.getText().toString();
-         link = linkEditText.getText().toString();
+        id = idEditText.getText().toString();
+        name = nameEditText.getText().toString();
+        price = priceEditText.getText().toString();
+        link = linkEditText.getText().toString();
     }
 }
