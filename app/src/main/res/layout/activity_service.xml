@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#dee2e4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.example.hasee.taiheapp.activity.service.ServiceActivity">
+
+    <TextView
+        android:id="@+id/bindService"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black_text"
+        android:gravity="center"
+        android:text="绑定服务" />
+
+    <TextView
+        android:id="@+id/unbindService"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black_text"
+        android:gravity="center"
+        android:text="解绑服务" />
+
+    <TextView
+        android:id="@+id/startWork"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black_text"
+        android:text="开始下载" />
+
+    <TextView
+        android:id="@+id/stopWork"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="停止下载"/>
+
+</LinearLayout>

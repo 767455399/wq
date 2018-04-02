@@ -84,7 +84,24 @@
         <activity android:name=".activity.lazy_load.LazyLoadActivity" />
         <activity android:name=".activity.view_click.ViewClickActivity" />
         <activity android:name=".activity.litepal.LitePalActivity" />
-        <activity android:name=".activity.litepal.ShowLitePalActivity"></activity>
+        <activity android:name=".activity.litepal.ShowLitePalActivity" />
+
+        <service
+            android:name="com.tairanchina.taiheapp.MyService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name="com.tairanchina.taiheapp.FrontService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.service.ServiceActivity" />
+        <activity android:name=".activity.service.FrontServiceActivity" />
+        <activity android:name=".activity.service.IntentServiceActivity" />
+
+        <service
+            android:name="com.tairanchina.taiheapp.MyIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

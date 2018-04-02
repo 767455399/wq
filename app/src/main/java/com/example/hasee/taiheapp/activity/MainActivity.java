@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.hasee.taiheapp.R;
-import com.example.hasee.taiheapp.activity.litepal.LitePalActivity;
+import com.example.hasee.taiheapp.activity.service.IntentServiceActivity;
 import com.example.hasee.taiheapp.base.BaseActivity;
 import com.example.hasee.taiheapp.fragment.ContentFragment;
 import com.example.hasee.taiheapp.fragment.MineFragment;
@@ -21,6 +21,7 @@ import com.example.hasee.taiheapp.fragment.OrderFragment;
 import com.example.hasee.taiheapp.fragment.ShopFragment;
 import com.example.hasee.taiheapp.tools.ToastUtil;
 import com.example.lianlianpay.LianLianPayModle;
+import com.tairanchina.taiheapp.FrontService;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -43,6 +44,8 @@ public class MainActivity extends BaseActivity {
     private Handler handler = new Handler();
     private TextView textView;
     private TextView toOtherTextView;
+    private TextView startService;
+    private TextView stopService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,7 @@ public class MainActivity extends BaseActivity {
     public void toOtherActivity() {
 //        phoneList.add("13554054250");
 //        DingTalkUtil.sengMsg(path,textMsg,phoneList);
-        startActivity(new Intent(MainActivity.this, LitePalActivity.class));
+        startActivity(new Intent(MainActivity.this, IntentServiceActivity.class));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -120,6 +123,23 @@ public class MainActivity extends BaseActivity {
         });
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        startService=f(R.id.startService);
+        stopService=f(R.id.stopService);
+        startService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startServices=new Intent(MainActivity.this, FrontService.class);
+                startService(startServices);
+            }
+        });
+
+        stopService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent stopServices=new Intent(MainActivity.this,FrontService.class);
+                stopService(stopServices);
+            }
+        });
 //        tabLayout.addTab(tabLayout.newTab().setText("主页"));
 //        tabLayout.addTab(tabLayout.newTab().setText("商城"));
 //        tabLayout.addTab(tabLayout.newTab().setText("订单"));
