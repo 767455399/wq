@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.hasee.taiheapp.activity.pedometer.StepActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textSize="30dp"
+        android:gravity="bottom|center_horizontal"
+        android:text="今日步数"/>
+
+    <TextView
+        android:id="@+id/step"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:text="100步"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/black_text"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/startStep"
+        android:gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#a4a6a7"
+        android:textColor="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:text="开始计步"/>
+
+</LinearLayout>
