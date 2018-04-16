@@ -9,8 +9,9 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!--开机广播监听-->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- 开机广播监听 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:name=".base.BaseApplication"
@@ -30,16 +31,13 @@
             </intent-filter>
         </receiver>
 
-        <!--开机广播监听-->
+        <!-- 开机广播监听 -->
         <receiver android:name=".activity.pedometer.BootBroadcastReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
             </intent-filter>
         </receiver>
-
-
-
 
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -121,7 +119,14 @@
         <service
             android:name="com.tairanchina.taiheapp.StepService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+        <service
+            android:name="com.tairanchina.taiheapp.BindService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".activity.get_contact.GetContactActivity" />
+        <activity android:name=".activity.banner.BannerActivity"></activity>
     </application>
 
 </manifest>

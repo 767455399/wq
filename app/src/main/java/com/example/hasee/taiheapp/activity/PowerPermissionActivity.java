@@ -18,6 +18,10 @@ import android.widget.Toast;
 import com.example.hasee.taiheapp.R;
 import com.example.hasee.taiheapp.dialog.PermissionDialog;
 
+/**
+ * 权限申请
+ */
+
 public class PowerPermissionActivity extends AppCompatActivity {
     public static final int TAKE_PHOTO_WITH_DATA = 0;
     public static final int CAMERA_PERMISSION = 1;

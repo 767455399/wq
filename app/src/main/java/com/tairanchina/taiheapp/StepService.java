@@ -62,7 +62,17 @@ public class StepService extends Service implements SensorEventListener {
             sensorManager.registerListener(StepService.this,countSensor,SensorManager.SENSOR_DELAY_NORMAL);
         }else if(detectorSensor!=null){
             sensorManager.registerListener(StepService.this,countSensor,SensorManager.SENSOR_DELAY_NORMAL);
+        }else{
+            
         }
+    }
+
+
+    /**
+     * 启动加速度传感器计步
+     */
+    private void addBasePedometerListener(){
+        Log.d(TAG, "addBasePedometerListener: 加速度传感器");
     }
 
     /**
